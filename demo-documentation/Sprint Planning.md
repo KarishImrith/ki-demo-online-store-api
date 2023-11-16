@@ -2,10 +2,10 @@
 ## Compulsary
 * Create dotnet core 8 application
 	* [DONE] Create OnlineStore.App
+  * [DONE] Remove redundant code & cleanup
 	* [DONE] Setup stylecop
 	* [DONE] Setup healthchecks
-	* Setup logging using serilog
-	* Remove redundant code & cleanup
+	* [Done] Setup logging using serilog
 * Setup Authentication with google
 	* Add Demo.Libraries.Configuration with helpers to access secrets
 	* Add google authentication to swagger
