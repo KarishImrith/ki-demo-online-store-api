@@ -4,7 +4,6 @@
 	* [DONE] Create OnlineStore.App
 	* [DONE] Setup stylecop
 	* [DONE] Setup healthchecks
-	* Setup swagger
 	* Setup logging using serilog
 	* Remove redundant code & cleanup
 * Setup Authentication with google
@@ -21,6 +20,7 @@
 	* Create OnlineStore.Logic.Tests
 	* Product Concern: Create unit tests
 	* Setup OData
+	* Setup swagger
 	* Product Concern: Create controller
 	* ShoppingCart Concern: Create mediator handlers as per planning & unit tests
 	* ShoppingCart Concern: Create controller
