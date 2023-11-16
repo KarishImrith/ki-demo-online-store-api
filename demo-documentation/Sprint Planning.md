@@ -3,6 +3,7 @@
 * Create dotnet core 8 application
 	* [DONE] Create OnlineStore.App
 	* [DONE] Setup stylecop
+	* [DONE] Setup healthchecks
 	* Setup swagger
 	* Setup logging using serilog
 	* Remove redundant code & cleanup
@@ -37,7 +38,7 @@
 * Add dockerfile
 	* MS Sql Server
 	* OnlineStore.App
-* Add healthchecks
+* Add additional healthchecks
 * Add documentation on how the application can scale
 	* Move to blob storage/minio and avoid running files through the api when being downloaded
 	* Add redis distributed caching
