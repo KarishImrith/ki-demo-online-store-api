@@ -1,7 +1,7 @@
 # Sprint Planning
 ## Compulsary
 * Create dotnet core 8 application
-	* Create Demo.App
+	* Create OnlineStore.App
 	* Setup stylecop
 	* Setup swagger
 	* Setup logging using serilog
@@ -10,14 +10,14 @@
 	* Add Demo.Libraries.Configuration with helpers to access secrets
 	* Add google authentication to swagger
 * Create the database
-    * Create Demo.Database
+    * Create OnlineStore.Database
 	* Create models
 	* Setup automatic migration on startup
 	* Setup seed data
 * Implement logic
-	* Create Demo.Logic
+	* Create OnlineStore.Logic
 	* Product Concern: Create mediator handlers as per planning
-	* Create Demo.Logic.Tests
+	* Create OnlineStore.Logic.Tests
 	* Product Concern: Create unit tests
 	* Setup OData
 	* Product Concern: Create controller
@@ -36,7 +36,7 @@
 * Add api rate limiting
 * Add dockerfile
 	* MS Sql Server
-	* Demo.App
+	* OnlineStore.App
 * Add healthchecks
 * Add documentation on how the application can scale
 	* Move to blob storage/minio and avoid running files through the api when being downloaded
