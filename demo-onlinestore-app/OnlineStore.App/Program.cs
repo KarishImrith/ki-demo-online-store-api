@@ -2,6 +2,9 @@ using OnlineStore.App.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+/* Configure logging. */
+builder.Host.ConfigureSerilog();
+
 /* Add services to the container. */
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
