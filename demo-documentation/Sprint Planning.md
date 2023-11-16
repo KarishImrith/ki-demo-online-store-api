@@ -1,8 +1,8 @@
 # Sprint Planning
 ## Compulsary
 * Create dotnet core 8 application
-	* Create OnlineStore.App
-	* Setup stylecop
+	* [DONE] Create OnlineStore.App
+	* [DONE] Setup stylecop
 	* Setup swagger
 	* Setup logging using serilog
 	* Remove redundant code & cleanup
