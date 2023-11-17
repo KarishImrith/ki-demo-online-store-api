@@ -12,11 +12,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 
 /* Configure the HTTP request pipeline. */
-app.UseAuthorization();
-
-app.UseRouting();
-app.UseEndpoints();
-
 app.MapControllers();
+app.MapHealthCheckEndpoints();
 
 app.Run();
