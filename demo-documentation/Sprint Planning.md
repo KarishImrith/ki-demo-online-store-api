@@ -10,7 +10,7 @@
 * Setup Authentication with google
   * [DONE] Add security via identity core
   * [DONE] Update swagger with identity authentication
-	* Add google authentication to swagger
+	* Wire up google authentication
 * Create the database
     * Create models
 	* Setup automatic migration on startup

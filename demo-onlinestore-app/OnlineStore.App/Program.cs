@@ -3,20 +3,23 @@ using OnlineStore.Database.Entities;
 using static OnlineStore.App.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
+var host = builder.Host;
+var services = builder.Services;
+var configuration = builder.Configuration;
 
 /* Configure logging. */
-builder.Host.ConfigureSerilogSupport();
+host.ConfigureSerilogSupport();
 
 /* Add services to the container. */
-builder.Services.AddAuthorization();
-builder.Services.AddControllers();
-builder.Services.AddDatabaseSupport();
-builder.Services.AddHealthChecks();
-builder.Services.AddIdentitySupport();
+services.AddAuthorization();
+services.AddControllers();
+services.AddDatabaseSupport();
+services.AddHealthChecks();
+services.AddIdentitySupport();
 
-builder.Services.AddSwaggerSupport(
-    builder.Configuration.GetValue<string>(SecretKeyConstants.SwaggerContactName),
-    builder.Configuration.GetValue<string>(SecretKeyConstants.SwaggerContactEmailAddress));
+services.AddSwaggerSupport(
+    configuration.GetValue<string>(SecretKeyConstants.SwaggerContactName),
+    configuration.GetValue<string>(SecretKeyConstants.SwaggerContactEmailAddress));
 
 var app = builder.Build();
 
