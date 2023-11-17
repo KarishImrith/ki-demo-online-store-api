@@ -1,30 +1,24 @@
 ﻿using Microsoft.OpenApi.Models;
+using static OnlineStore.App.Constants;
 
 namespace OnlineStore.App.Helpers;
 
 public static class Swagger
 {
-    public const string ContactName = "Karish Imrith";
-    public const string ContactEmail = "imrith.karish@gmail.com";
-    public const string Description = "An ASP.NET Core Web API for managing an online store.";
-    public const string EndpointUrl = $"/swagger/{Version}/swagger.json";
-    public const string Title = $"{nameof(OnlineStore)} API";
-    public const string Version = "v1";
-
-    public static IServiceCollection AddSwaggerSupport(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddSwaggerSupport(this IServiceCollection serviceCollection, string contactName, string contactEmailAddress)
     {
         serviceCollection.AddEndpointsApiExplorer();
         serviceCollection.AddSwaggerGen(setup =>
         {
-            setup.SwaggerDoc(Version, new OpenApiInfo
+            setup.SwaggerDoc(SwaggerConstants.Version, new OpenApiInfo
             {
-                Version = Version,
-                Title = Title,
-                Description = Description,
+                Version = SwaggerConstants.Version,
+                Title = SwaggerConstants.DocumentTitle,
+                Description = SwaggerConstants.DocumentDescription,
                 Contact = new OpenApiContact
                 {
-                    Name = ContactName,
-                    Email = ContactEmail
+                    Name = contactName,
+                    Email = contactEmailAddress
                 }
             });
         });
@@ -38,7 +32,7 @@ public static class Swagger
         applicationBuilder.UseSwaggerUI(setup =>
         {
             setup.RoutePrefix = string.Empty;
-            setup.SwaggerEndpoint(EndpointUrl, Title);
+            setup.SwaggerEndpoint(SwaggerConstants.EndpointUrl, SwaggerConstants.DocumentTitle);
         });
 
         return applicationBuilder;

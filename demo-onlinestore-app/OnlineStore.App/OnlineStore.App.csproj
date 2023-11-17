@@ -2,9 +2,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<CodeAnalysisRuleSet>..\..\Shared\StyleCop\StyleCop.ruleset</CodeAnalysisRuleSet>
+
+		<!--Development Secrets: Refer to OnlineStore.App.Constants.SecretKeyConstants for required secrets-->
+		<UserSecretsId>fd2c9011-5f6d-4f83-be1c-ee9d7807d7d4</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
