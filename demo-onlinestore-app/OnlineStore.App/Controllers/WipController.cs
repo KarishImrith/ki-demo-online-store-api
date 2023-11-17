@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineStore.App.Controllers;
 
@@ -8,5 +9,10 @@ public class WipController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get()
+        => this.Ok();
+
+    [HttpGet("secure")]
+    [Authorize]
+    public IActionResult GetSecure()
         => this.Ok();
 }

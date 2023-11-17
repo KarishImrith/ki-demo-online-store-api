@@ -6,13 +6,13 @@
 	* [DONE] Setup stylecop
 	* [DONE] Setup healthchecks
 	* [DONE] Setup logging using serilog
-    * [DONE] Setup swagger
+  * [DONE] Setup swagger
 * Setup Authentication with google
-	* Add Demo.Libraries.Configuration with helpers to access secrets
+  * [DONE] Add security via identity core
+  * [DONE] Update swagger with identity authentication
 	* Add google authentication to swagger
 * Create the database
-    * Create OnlineStore.Database
-	* Create models
+    * Create models
 	* Setup automatic migration on startup
 	* Setup seed data
 * Implement logic

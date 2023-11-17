@@ -1,4 +1,6 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using static OnlineStore.App.Constants;
 
 namespace OnlineStore.App.Helpers;
@@ -21,6 +23,17 @@ public static class Swagger
                     Email = contactEmailAddress
                 }
             });
+
+            setup.AddSecurityDefinition(
+                SwaggerConstants.SecurityDefinitionOAuth2,
+                new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Name = HeaderNames.Authorization,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+            setup.OperationFilter<SecurityRequirementsOperationFilter>();
         });
 
         return serviceCollection;

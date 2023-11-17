@@ -13,6 +13,7 @@ public static class Constants
         public const string DocumentDescription = "An ASP.NET Core Web API for managing an online store.";
         public const string DocumentTitle = $"{nameof(OnlineStore)} API";
         public const string EndpointUrl = $"/swagger/{Version}/swagger.json";
+        public const string SecurityDefinitionOAuth2 = "oauth2";
         public const string Version = "v1";
     }
 }
