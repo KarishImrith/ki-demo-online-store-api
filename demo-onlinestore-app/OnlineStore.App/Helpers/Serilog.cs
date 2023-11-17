@@ -4,7 +4,7 @@ namespace OnlineStore.App.Helpers;
 
 public static class Serilog
 {
-    public static void ConfigureSerilog(this IHostBuilder hostBuilder)
+    public static void ConfigureSerilogSupport(this IHostBuilder hostBuilder)
     {
         hostBuilder.UseSerilog(ConfigureLogger);
     }

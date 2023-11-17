@@ -5,7 +5,8 @@
   * [DONE] Remove redundant code & cleanup
 	* [DONE] Setup stylecop
 	* [DONE] Setup healthchecks
-	* [Done] Setup logging using serilog
+	* [DONE] Setup logging using serilog
+    * [DONE] Setup swagger
 * Setup Authentication with google
 	* Add Demo.Libraries.Configuration with helpers to access secrets
 	* Add google authentication to swagger
@@ -20,7 +21,6 @@
 	* Create OnlineStore.Logic.Tests
 	* Product Concern: Create unit tests
 	* Setup OData
-	* Setup swagger
 	* Product Concern: Create controller
 	* ShoppingCart Concern: Create mediator handlers as per planning & unit tests
 	* ShoppingCart Concern: Create controller

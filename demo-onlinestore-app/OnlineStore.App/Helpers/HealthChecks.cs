@@ -11,7 +11,7 @@ public static class HealthChecks
         public const string Health = nameof(Health);
     }
 
-    public static IServiceCollection AddHealthCheckEndpoints(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddHealthCheckSupport(this IServiceCollection serviceCollection)
     {
         serviceCollection
             .AddHealthChecks()
@@ -20,7 +20,7 @@ public static class HealthChecks
         return serviceCollection;
     }
 
-    public static IApplicationBuilder MapHealthCheckEndpoints(this IApplicationBuilder applicationBuilder)
+    public static IApplicationBuilder MapHealthCheckSupport(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.MapHealthCheckEndpoint(HealthCheckEndpointConstants.Health);
 
