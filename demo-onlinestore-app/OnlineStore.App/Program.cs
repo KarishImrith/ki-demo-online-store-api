@@ -13,7 +13,7 @@ host.ConfigureSerilogSupport();
 /* Add services to the container. */
 services.AddAuthorization();
 services.AddControllers();
-services.AddDatabaseSupport();
+services.AddDatabaseSupport(configuration.GetValue<string>(SecretKeyConstants.SqlServerDatabaseConnectionString));
 services.AddHealthChecks();
 services.AddIdentitySupport();
 
@@ -28,5 +28,7 @@ app.MapControllers();
 app.MapHealthCheckSupport();
 app.MapIdentityApi<User>();
 app.MapSwaggerSupport();
+
+app.Services.EnsureDatabaseMigrationsApplied();
 
 app.Run();

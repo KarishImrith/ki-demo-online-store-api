@@ -4,7 +4,7 @@ using OnlineStore.Database.Entities;
 
 namespace OnlineStore.Database;
 
-public class DataDbContext : IdentityDbContext<User>
+public class DataDbContext : IdentityDbContext<User, UserRole, long>
 {
     public DataDbContext(DbContextOptions<DataDbContext> options)
         : base(options)
