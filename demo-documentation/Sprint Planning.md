@@ -10,11 +10,11 @@
 * Setup Authentication with google
   * [DONE] Add security via identity core
   * [DONE] Update swagger with identity authentication
-	* Wire up google authentication
+	* [DONE] Wire up google authentication
 * Create the database
-    * Create models
-	* Setup automatic migration on startup
-	* Setup seed data
+    * [DONE] Create models
+	* [DONE] Setup automatic migration on startup
+	* [!] Setup seed data
 * Implement logic
 	* Create OnlineStore.Logic
 	* Product Concern: Create mediator handlers as per planning
