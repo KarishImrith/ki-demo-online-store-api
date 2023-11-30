@@ -13,6 +13,7 @@ host.ConfigureSerilogSupport();
 /* Add services to the container. */
 services.AddAuthenticationSupport(configuration.GetValue<string>(SecretKeyConstants.GoogleOAuth2ClientId));
 services.AddAuthorizationSupport();
+services.AddAutoMapperSupport();
 services.AddControllers();
 services.AddDatabaseSupport(configuration.GetValue<string>(SecretKeyConstants.SqlServerDatabaseConnectionString));
 services.AddHealthChecks();
