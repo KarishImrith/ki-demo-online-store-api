@@ -16,9 +16,9 @@ public class Handler : IRequestHandler<ProductDeleteCommand>
         _mapper = mapper;
     }
 
-    public async Task Handle(ProductDeleteCommand request, CancellationToken cancellationToken)
+    public async Task Handle(ProductDeleteCommand command, CancellationToken cancellationToken)
     {
-        var product = await _dataDbContext.Set<Product>().FindAsync([request.Id], cancellationToken: cancellationToken);
+        var product = await _dataDbContext.Set<Product>().FindAsync([command.Id], cancellationToken: cancellationToken);
         if (product == null)
             throw new KeyNotFoundException();
 

@@ -16,13 +16,13 @@ public class Handler : IRequestHandler<ProductPutCommand>
         _mapper = mapper;
     }
 
-    public async Task Handle(ProductPutCommand request, CancellationToken cancellationToken)
+    public async Task Handle(ProductPutCommand command, CancellationToken cancellationToken)
     {
-        var product = await _dataDbContext.Set<Product>().FindAsync([request.Id], cancellationToken: cancellationToken);
+        var product = await _dataDbContext.Set<Product>().FindAsync([command.Id], cancellationToken: cancellationToken);
         if (product == null)
             throw new KeyNotFoundException();
 
-        _mapper.Map(request.ProductPutDto, product);
+        _mapper.Map(command.ProductPutDto, product);
 
         await _dataDbContext.SaveChangesAsync(cancellationToken);
     }

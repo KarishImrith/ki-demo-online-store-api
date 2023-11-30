@@ -16,9 +16,9 @@ public class Handler : IRequestHandler<ProductPostCommand, long>
         _mapper = mapper;
     }
 
-    public async Task<long> Handle(ProductPostCommand request, CancellationToken cancellationToken)
+    public async Task<long> Handle(ProductPostCommand command, CancellationToken cancellationToken)
     {
-        var product = _mapper.Map<Product>(request.ProductPostDto);
+        var product = _mapper.Map<Product>(command.ProductPostDto);
 
         await _dataDbContext.AddAsync(product, cancellationToken);
         await _dataDbContext.SaveChangesAsync();

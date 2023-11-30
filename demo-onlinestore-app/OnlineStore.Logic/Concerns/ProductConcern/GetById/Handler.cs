@@ -18,12 +18,12 @@ public class Handler : IRequestHandler<ProductGetByIdCommand, ProductGetByIdDto>
         _mapper = mapper;
     }
 
-    public Task<ProductGetByIdDto> Handle(ProductGetByIdCommand request, CancellationToken cancellationToken)
+    public async Task<ProductGetByIdDto> Handle(ProductGetByIdCommand command, CancellationToken cancellationToken)
     {
-        var product = _dataDbContext.Set<Product>()
+        var product = await _dataDbContext.Set<Product>()
             .AsNoTracking()
             .ProjectTo<ProductGetByIdDto>(_mapper.ConfigurationProvider)
-            .SingleOrDefaultAsync(_ => _.Id == request.Id, cancellationToken);
+            .SingleOrDefaultAsync(_ => _.Id == command.Id, cancellationToken);
 
         if (product == null)
             throw new KeyNotFoundException();

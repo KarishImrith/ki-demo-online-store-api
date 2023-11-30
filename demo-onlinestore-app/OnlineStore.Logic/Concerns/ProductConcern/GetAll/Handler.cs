@@ -18,7 +18,7 @@ public class Handler : IRequestHandler<ProductGetAllCommand, IQueryable<ProductG
         _mapper = mapper;
     }
 
-    public Task<IQueryable<ProductGetAllDto>> Handle(ProductGetAllCommand request, CancellationToken cancellationToken)
+    public Task<IQueryable<ProductGetAllDto>> Handle(ProductGetAllCommand command, CancellationToken cancellationToken)
     {
         var products = _dataDbContext.Set<Product>()
             .AsNoTracking()
