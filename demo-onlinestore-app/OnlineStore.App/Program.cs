@@ -1,5 +1,6 @@
 using OnlineStore.App;
 using OnlineStore.App.Helpers;
+using OnlineStore.App.Middleware;
 using OnlineStore.Database.Entities;
 using static OnlineStore.App.Constants;
 
@@ -35,6 +36,8 @@ var app = builder.Build();
 /* Configure the HTTP request pipeline. */
 app.UseAuthentication();
 app.UseAuthorizationSupport();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 app.MapHealthCheckSupport();
