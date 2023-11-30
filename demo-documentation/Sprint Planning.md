@@ -34,7 +34,7 @@
 	* ProductAttachment Concern: Create controller
 * Add validation using FluentValidation
 * Add additional swagger documentation for the controllers with supported response types
-* Add a global exception handler and ensure correct http status codes are being returned
+* [DONE] Add a global exception handler and ensure correct http status codes are being returned
 * Add audit for all api operations
 * Add api rate limiting
 * Add dockerfile
