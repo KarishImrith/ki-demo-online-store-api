@@ -12,7 +12,7 @@ public class Profile : AutoMapper.Profile
     {
         this.CreateMap<Product, ProductGetAllDto>();
         this.CreateMap<Product, ProductGetByIdDto>();
-        this.CreateMap<ProductPostCommand, Product>();
-        this.CreateMap<ProductPutCommand, Product>();
+        this.CreateMap<ProductPostDto, Product>();
+        this.CreateMap<ProductPutDto, Product>();
     }
 }
