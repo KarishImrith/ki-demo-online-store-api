@@ -11,7 +11,8 @@ var configuration = builder.Configuration;
 host.ConfigureSerilogSupport();
 
 /* Add services to the container. */
-services.AddAuthorization();
+services.AddAuthenticationSupport(configuration.GetValue<string>(SecretKeyConstants.GoogleOAuth2ClientId));
+services.AddAuthorizationSupport();
 services.AddControllers();
 services.AddDatabaseSupport(configuration.GetValue<string>(SecretKeyConstants.SqlServerDatabaseConnectionString));
 services.AddHealthChecks();
@@ -24,6 +25,9 @@ services.AddSwaggerSupport(
 var app = builder.Build();
 
 /* Configure the HTTP request pipeline. */
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 app.MapHealthCheckSupport();
 app.MapIdentityApi<User>();
