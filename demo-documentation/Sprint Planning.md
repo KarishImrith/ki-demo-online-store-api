@@ -12,7 +12,7 @@
   * [DONE] Update swagger with identity authentication
 	* [DONE] Wire up google authentication
 * Create the database
-    * [DONE] Create models
+  * [DONE] Create models
 	* [DONE] Setup automatic migration on startup
 	* [!] Setup seed data
 * Implement logic
@@ -32,11 +32,11 @@
 * Implement logic
     * ProductAttachment Concern: Create mediator handlers as per planning & unit tests
 	* ProductAttachment Concern: Create controller
-* Add validation using FluentValidation
+* [DONE] Add validation using FluentValidation
 * Add additional swagger documentation for the controllers with supported response types
 * [DONE] Add a global exception handler and ensure correct http status codes are being returned
 * Add audit for all api operations
-* Add api rate limiting
+* [DONE] Add api rate limiting
 * Add dockerfile
 	* MS Sql Server
 	* OnlineStore.App
