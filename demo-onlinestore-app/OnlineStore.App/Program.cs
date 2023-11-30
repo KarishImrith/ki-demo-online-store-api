@@ -31,6 +31,8 @@ services.AddSwaggerSupport(
     configuration.GetValue<string>(SecretKeyConstants.SwaggerContactName),
     configuration.GetValue<string>(SecretKeyConstants.SwaggerContactEmailAddress));
 
+services.AddValidationSupport();
+
 var app = builder.Build();
 
 /* Configure the HTTP request pipeline. */

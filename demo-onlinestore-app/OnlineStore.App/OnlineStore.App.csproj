@@ -11,7 +11,6 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\Shared\StyleCop\StyleCop.json" Link="stylecop.json" />
-		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
 		<PackageReference Include="Stylecop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +21,7 @@
 		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
 		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
 		<PackageReference Include="Serilog.Enrichers.Environment" Version="2.3.0" />
 		<PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />

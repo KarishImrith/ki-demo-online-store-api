@@ -5,7 +5,7 @@ using OnlineStore.Database.Entities;
 
 namespace OnlineStore.Logic.Concerns.ProductConcern.Put;
 
-public class Handler : IRequestHandler<ProductPutCommand>
+public class Handler : IRequestHandler<ProductPutCommand, long>
 {
     private readonly DataDbContext _dataDbContext;
     private readonly IMapper _mapper;
@@ -16,7 +16,7 @@ public class Handler : IRequestHandler<ProductPutCommand>
         _mapper = mapper;
     }
 
-    public async Task Handle(ProductPutCommand command, CancellationToken cancellationToken)
+    public async Task<long> Handle(ProductPutCommand command, CancellationToken cancellationToken)
     {
         var product = await _dataDbContext.Set<Product>().FindAsync([command.Id], cancellationToken: cancellationToken);
         if (product == null)
@@ -25,5 +25,7 @@ public class Handler : IRequestHandler<ProductPutCommand>
         _mapper.Map(command.ProductPutDto, product);
 
         await _dataDbContext.SaveChangesAsync(cancellationToken);
+
+        return product.Id;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace OnlineStore.Logic.Concerns.ProductConcern.Put;
 
-public class ProductPutCommand : IRequest
+public class ProductPutCommand : IRequest<long>
 {
     public ProductPutCommand(long id, ProductPutDto productPutDto)
     {

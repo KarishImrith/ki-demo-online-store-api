@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Mime;
 using System.Security.Authentication;
@@ -44,6 +45,12 @@ public class ExceptionMiddleware
                     problemDetails.Title = HttpStatusCode.Forbidden.ToString();
                     problemDetails.Detail = exception.Message;
                     problemDetails.Status = (int)HttpStatusCode.Forbidden;
+                    break;
+
+                case ValidationException:
+                    problemDetails.Title = HttpStatusCode.BadRequest.ToString();
+                    problemDetails.Detail = exception.Message;
+                    problemDetails.Status = (int)HttpStatusCode.BadRequest;
                     break;
 
                 default:
