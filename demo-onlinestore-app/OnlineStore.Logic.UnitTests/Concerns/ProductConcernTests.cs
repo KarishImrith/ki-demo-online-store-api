@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Database;
 using OnlineStore.Database.Entities;
+using OnlineStore.Logic.Concerns.ProductConcern;
 using OnlineStore.Logic.Concerns.ProductConcern.GetAll;
 using OnlineStore.Logic.Concerns.ProductConcern.GetById;
 using OnlineStore.Logic.Concerns.ProductConcern.Post;
@@ -16,26 +17,26 @@ using GetById = OnlineStore.Logic.Concerns.ProductConcern.GetById;
 using Post = OnlineStore.Logic.Concerns.ProductConcern.Post;
 using Put = OnlineStore.Logic.Concerns.ProductConcern.Put;
 
-namespace OnlineStore.Logic.UnitTests.Concerns.ProductConcerns;
+namespace OnlineStore.Logic.UnitTests.Concerns;
 
-public class GetAllTests
+public class ProductConcernTests
 {
     private readonly Fixture _fixture;
     private readonly IList<Product> _initialProducts;
 
-    public GetAllTests()
+    public ProductConcernTests()
     {
         _fixture = new Fixture();
         _fixture.Customizations.Add(new UniqueIdSpecimenBuilder());
-        _initialProducts = this.GenerateMockProducts(5);
+        _initialProducts = GenerateMockProducts(5);
     }
 
     [Fact]
     public async Task GetAllHandler_ReturnsCorrectResults()
     {
         // Arrange
-        var mockDbContext = await this.GenerateMockDataDbContextAsync();
-        var mockMapper = this.GenerateMockMapper();
+        var mockDbContext = await GenerateMockDataDbContextAsync();
+        var mockMapper = GenerateMockMapper();
         var handler = new GetAll.Handler(mockDbContext, mockMapper);
 
         var command = new ProductGetAllCommand();
@@ -52,8 +53,8 @@ public class GetAllTests
     public async Task GetByIdHandler_ReturnsCorrectResult()
     {
         // Arrange
-        var mockDbContext = await this.GenerateMockDataDbContextAsync();
-        var mockMapper = this.GenerateMockMapper();
+        var mockDbContext = await GenerateMockDataDbContextAsync();
+        var mockMapper = GenerateMockMapper();
         var handler = new GetById.Handler(mockDbContext, mockMapper);
 
         var entityToGet = _initialProducts[Random.Shared.Next(0, _initialProducts.Count - 1)];
@@ -70,8 +71,8 @@ public class GetAllTests
     public async Task PostHandler_CreatesCorrectly()
     {
         // Arrange
-        var mockDbContext = await this.GenerateMockDataDbContextAsync();
-        var mockMapper = this.GenerateMockMapper();
+        var mockDbContext = await GenerateMockDataDbContextAsync();
+        var mockMapper = GenerateMockMapper();
         var handler = new Post.Handler(mockDbContext, mockMapper);
 
         var beforeRecordCount = await mockDbContext.Set<Product>().CountAsync();
@@ -92,8 +93,8 @@ public class GetAllTests
     public async Task PutHandler_UpdatesCorrectly()
     {
         // Arrange
-        var mockDbContext = await this.GenerateMockDataDbContextAsync();
-        var mockMapper = this.GenerateMockMapper();
+        var mockDbContext = await GenerateMockDataDbContextAsync();
+        var mockMapper = GenerateMockMapper();
         var handler = new Put.Handler(mockDbContext, mockMapper);
 
         var beforeRecordCount = await mockDbContext.Set<Product>().CountAsync();
@@ -112,6 +113,7 @@ public class GetAllTests
         updatedEntity.Should().BeEquivalentTo(dtoToUpdate, opt => opt.ExcludingMissingMembers());
     }
 
+    // TODO: Move this so that it is reusable
     private async Task<DataDbContext> GenerateMockDataDbContextAsync([CallerMemberName] string callerMemberName = "")
     {
         var options = new DbContextOptionsBuilder<DataDbContext>()
@@ -125,14 +127,16 @@ public class GetAllTests
         return dataDbContext;
     }
 
-    private IMapper GenerateMockMapper()
+    // TODO: Move this so that it is reusable
+    private static IMapper GenerateMockMapper()
     {
         var mapperConfiguration = new MapperConfiguration(configurationExpression => configurationExpression.AddProfile<ProductProfile>());
 
         return mapperConfiguration.CreateMapper();
     }
 
-    private IList<Product> GenerateMockProducts(int productCount)
+    // TODO: Move this so that it is reusable
+    private List<Product> GenerateMockProducts(int productCount)
     {
         return _fixture.Build<Product>()
             .Without(_ => _.ProductAttachments)
