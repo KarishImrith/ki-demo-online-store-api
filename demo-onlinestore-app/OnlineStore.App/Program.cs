@@ -17,6 +17,8 @@ services.AddControllers();
 services.AddDatabaseSupport(configuration.GetValue<string>(SecretKeyConstants.SqlServerDatabaseConnectionString));
 services.AddHealthChecks();
 services.AddIdentitySupport();
+services.AddLogicSupport();
+services.AddMediatRSupport();
 
 services.AddSwaggerSupport(
     configuration.GetValue<string>(SecretKeyConstants.SwaggerContactName),
@@ -26,7 +28,7 @@ var app = builder.Build();
 
 /* Configure the HTTP request pipeline. */
 app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthorizationSupport();
 
 app.MapControllers();
 app.MapHealthCheckSupport();

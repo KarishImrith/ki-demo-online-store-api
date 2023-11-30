@@ -2,6 +2,11 @@
 
 public static class Constants
 {
+    public static class HttpContextItemKeyConstants
+    {
+        public const string UserId = nameof(UserId);
+    }
+
     public static class SecretKeyConstants
     {
         public const string GoogleOAuth2ClientId = "Google:OAuth2:ClientId";

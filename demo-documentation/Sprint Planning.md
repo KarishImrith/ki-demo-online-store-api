@@ -16,7 +16,9 @@
 	* [DONE] Setup automatic migration on startup
 	* [!] Setup seed data
 * Implement logic
-	* Create OnlineStore.Logic
+	* [Done] Create OnlineStore.Logic
+  * [Done] Setup middleware & logic to get userId from httpcontextaccessor
+  * [Done] Setup mediatr
 	* Product Concern: Create mediator handlers as per planning
 	* Create OnlineStore.Logic.Tests
 	* Product Concern: Create unit tests
