@@ -22,8 +22,8 @@
 	* [DONE] Product Concern: Create mediator handlers as per planning
 	* [DONE] Create OnlineStore.Logic.UnitTests
 	* [DONE] Product Concern: Create unit tests
-	* Setup OData
-	* Product Concern: Create controller
+	* [DONE] Setup OData
+	* [DONE] Product Concern: Create controller
 	* ShoppingCart Concern: Create mediator handlers as per planning & unit tests
 	* ShoppingCart Concern: Create controller
 * Create file storage libraries
