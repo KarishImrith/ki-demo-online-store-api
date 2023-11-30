@@ -11,6 +11,7 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\Shared\StyleCop\StyleCop.json" Link="stylecop.json" />
+		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
 		<PackageReference Include="Stylecop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,3 +1,4 @@
+using OnlineStore.App;
 using OnlineStore.App.Helpers;
 using OnlineStore.Database.Entities;
 using static OnlineStore.App.Constants;
@@ -14,7 +15,11 @@ host.ConfigureSerilogSupport();
 services.AddAuthenticationSupport(configuration.GetValue<string>(SecretKeyConstants.GoogleOAuth2ClientId));
 services.AddAuthorizationSupport();
 services.AddAutoMapperSupport();
-services.AddControllers();
+
+services
+    .AddControllersSupport()
+    .AddODataSupport(configuration.GetConfig<AppOptions>().ODataRoutePrefix, configuration.GetConfig<AppOptions>().ODataMaxTop);
+
 services.AddDatabaseSupport(configuration.GetValue<string>(SecretKeyConstants.SqlServerDatabaseConnectionString));
 services.AddHealthChecks();
 services.AddIdentitySupport();
