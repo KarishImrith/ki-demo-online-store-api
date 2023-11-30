@@ -27,6 +27,11 @@ services.AddIdentitySupport();
 services.AddLogicSupport();
 services.AddMediatRSupport();
 
+services.AddRateLimiterSupport(
+    configuration.GetConfig<AppOptions>().RateLimiterPermitLimit,
+    configuration.GetConfig<AppOptions>().RateLimiterWindowSeconds,
+    configuration.GetConfig<AppOptions>().RateLimiterQueueLimit);
+
 services.AddSwaggerSupport(
     configuration.GetValue<string>(SecretKeyConstants.SwaggerContactName),
     configuration.GetValue<string>(SecretKeyConstants.SwaggerContactEmailAddress));
@@ -36,6 +41,8 @@ services.AddValidationSupport();
 var app = builder.Build();
 
 /* Configure the HTTP request pipeline. */
+app.UseRateLimiter();
+
 app.UseAuthentication();
 app.UseAuthorizationSupport();
 

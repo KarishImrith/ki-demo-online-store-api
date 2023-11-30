@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.AspNetCore.RateLimiting;
 using OnlineStore.Logic.Concerns.ProductConcern.Delete;
 using OnlineStore.Logic.Concerns.ProductConcern.GetAll;
 using OnlineStore.Logic.Concerns.ProductConcern.GetById;
@@ -10,6 +11,7 @@ using OnlineStore.Logic.Concerns.ProductConcern.Put;
 
 namespace OnlineStore.App.Controllers;
 
+[EnableRateLimiting(nameof(OnlineStore))]
 public class ProductController : ODataController
 {
     private readonly IMediator _mediator;
