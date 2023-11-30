@@ -2,7 +2,7 @@
 
 namespace OnlineStore.Logic.Concerns.ProductConcern.Post;
 
-public class ProductPostCommand : IRequest
+public class ProductPostCommand : IRequest<long>
 {
     public ProductPostCommand(ProductPostDto productPostDto)
     {
