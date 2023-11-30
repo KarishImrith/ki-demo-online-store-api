@@ -16,12 +16,12 @@
 	* [DONE] Setup automatic migration on startup
 	* [!] Setup seed data
 * Implement logic
-	* [Done] Create OnlineStore.Logic
-  * [Done] Setup middleware & logic to get userId from httpcontextaccessor
-  * [Done] Setup mediatr
-	* Product Concern: Create mediator handlers as per planning
-	* Create OnlineStore.Logic.Tests
-	* Product Concern: Create unit tests
+	* [DONE] Create OnlineStore.Logic
+  * [DONE] Setup middleware & logic to get userId from httpcontextaccessor
+  * [DONE] Setup mediatr
+	* [DONE] Product Concern: Create mediator handlers as per planning
+	* [DONE] Create OnlineStore.Logic.UnitTests
+	* [DONE] Product Concern: Create unit tests
 	* Setup OData
 	* Product Concern: Create controller
 	* ShoppingCart Concern: Create mediator handlers as per planning & unit tests
