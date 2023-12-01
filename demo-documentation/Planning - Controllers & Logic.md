@@ -9,22 +9,17 @@
 ## Get:
 SELECT *
 FROM ShoppingCartItem sci
-INNER JOIN ProductAttachment pa ON sci.ProductId = pa.ProductId
+INNER JOIN Product p ON p.Id = sci.ProductId
 WHERE sci.UserId = @userId AND sci.PurchaseOrderId IS NULL;
 
 ## Get(@shoppingCartItemId):
 SELECT *
 FROM ShoppingCartItem sci
-INNER JOIN ProductAttachment pa ON sci.ProductId = pa.ProductId
 WHERE sci.UserId = @userId AND sci.Id = @shoppingCartItemId;
 
 ## Post:
-SELECT CurrentSellingPrice INTO @currentSellingPrice
-FROM Product
-WHERE Id = @productId;
-
 INSERT INTO ShoppingCartItem
-VALUES (@userId, @productId, @quantity, @currentSellingPrice, Now(), null);
+VALUES (@userId, @productId, @quantity, null, Now(), null);
 
 ## Post (/Checkout):
 SELECT SUM(SellingPrice) INTO @totalCartSellingPrice
@@ -40,11 +35,9 @@ WHERE @UserId = @userId AND PurchaseOrderId IS NULL;
 
 ## Put(@shoppingCartItemId):
 UPDATE ShoppingCartItem
-SET Quantity = @quantity
-WHERE UserId = @userId AND Id = @shoppingCartItemId;
-
-## Delete:
-DELETE FROM ShoppingCartItem
+SET
+  ProductId = @productId
+  Quantity = @quantity
 WHERE UserId = @userId AND Id = @shoppingCartItemId;
 
 ## Delete(@shoppingCartItemId):
