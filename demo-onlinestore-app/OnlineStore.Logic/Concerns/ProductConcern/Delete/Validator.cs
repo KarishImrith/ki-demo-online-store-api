@@ -20,13 +20,13 @@ public class Validator : PipelineValidator<ProductDeleteCommand>
 
     private async Task<bool> NoDependantDataExists(ProductDeleteCommand productDeleteCommand, long id, ValidationContext<ProductDeleteCommand> validationContext, CancellationToken cancellationToken)
     {
-        var productAttachmentsExist = await _dataDbContext.Set<ProductAttachment>().AnyAsync(_ => _.ProductId != id, cancellationToken);
+        var productAttachmentsExist = await _dataDbContext.Set<ProductAttachment>().AnyAsync(_ => _.ProductId == id, cancellationToken);
         if (productAttachmentsExist)
         {
             validationContext.AddFailure("'ProductAttachments' exist.");
         }
 
-        var shoppingCartItemsExist = await _dataDbContext.Set<ShoppingCartItem>().AnyAsync(_ => _.ProductId != id, cancellationToken);
+        var shoppingCartItemsExist = await _dataDbContext.Set<ShoppingCartItem>().AnyAsync(_ => _.ProductId == id, cancellationToken);
         if (shoppingCartItemsExist)
         {
             validationContext.AddFailure("'ShoppingCartItems' exist.");
