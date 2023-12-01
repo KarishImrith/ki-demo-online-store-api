@@ -5,6 +5,7 @@ using Microsoft.OData.ModelBuilder;
 using OnlineStore.App.Controllers;
 using OnlineStore.App.Factories;
 using OnlineStore.Logic.Concerns.ProductConcern.GetAll;
+using OnlineStore.Logic.Concerns.ShoppingCartItemConcern.GetAll;
 
 namespace OnlineStore.App.Helpers;
 
@@ -31,6 +32,7 @@ public static class OData
 
         // Configure odata controllers here
         oDataConventionModelBuilder.EntitySet<ProductGetAllDto, ProductController>();
+        oDataConventionModelBuilder.EntitySet<ShoppingCartItemGetAllDto, ShoppingCartItemController>();
 
         return oDataConventionModelBuilder.GetEdmModel();
     }
