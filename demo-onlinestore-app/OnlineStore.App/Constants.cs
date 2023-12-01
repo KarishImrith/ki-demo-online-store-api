@@ -10,6 +10,8 @@ public static class Constants
     public static class SecretKeyConstants
     {
         public const string GoogleOAuth2ClientId = "Google:OAuth2:ClientId";
+        public const string PrimaryUserEmailAddress = "PrimaryUser:EmailAddress";
+        public const string PrimaryUserPassword = "PrimaryUser:Password";
         public const string SqlServerDatabaseConnectionString = "SqlServer:Database:ConnectionString";
         public const string SwaggerContactName = "Swagger:Contact:Name";
         public const string SwaggerContactEmailAddress = "Swagger:Contact:EmailAddress";

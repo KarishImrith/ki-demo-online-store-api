@@ -53,6 +53,8 @@ app.MapHealthCheckSupport();
 app.MapIdentityApi<User>();
 app.MapSwaggerSupport();
 
-app.Services.EnsureDatabaseMigrationsApplied();
+await app.Services.EnsureDatabaseInitializedAsync(
+    configuration.GetValue<string>(SecretKeyConstants.PrimaryUserEmailAddress),
+    configuration.GetValue<string>(SecretKeyConstants.PrimaryUserPassword));
 
 app.Run();
