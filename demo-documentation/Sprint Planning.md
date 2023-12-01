@@ -14,7 +14,7 @@
 * Create the database
   * [DONE] Create models
 	* [DONE] Setup automatic migration on startup
-	* [!] Setup seed data
+	* [DONE] Setup seed data
 * Implement logic
 	* [DONE] Create OnlineStore.Logic
   * [DONE] Setup middleware & logic to get userId from httpcontextaccessor
@@ -24,8 +24,8 @@
 	* [DONE] Product Concern: Create unit tests
 	* [DONE] Setup OData
 	* [DONE] Product Concern: Create controller
-	* ShoppingCart Concern: Create mediator handlers as per planning & unit tests
-	* ShoppingCart Concern: Create controller
+	* [DONE] ShoppingCart Concern: Create mediator handlers as per planning & unit tests
+	* [DONE] ShoppingCart Concern: Create controller
 * Create file storage libraries
 	* Create Demo.Libraries.FileStorage.Abstractions library as per planning
 	* Create Demo.Libraries.FileStorage.Local library as per planning
@@ -37,6 +37,7 @@
 * [DONE] Add a global exception handler and ensure correct http status codes are being returned
 * Add audit for all api operations
 * [DONE] Add api rate limiting
+* Rework testing to do integration tests instead
 * Add dockerfile
 	* MS Sql Server
 	* OnlineStore.App
