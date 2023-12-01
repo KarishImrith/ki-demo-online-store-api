@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -11,6 +12,7 @@ using OnlineStore.Logic.Concerns.ProductConcern.Put;
 
 namespace OnlineStore.App.Controllers;
 
+[Authorize]
 [EnableRateLimiting(nameof(OnlineStore))]
 public class ProductController : ODataController
 {
