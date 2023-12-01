@@ -17,9 +17,9 @@ public class ShoppingCartItem
 
     public int Quantity { get; set; }
 
-    public decimal SellingPrice { get; set; }
+    public decimal? FinalSellingPrice { get; set; }
 
-    public DateTimeOffset AddedDateTime { get; set; }
+    public DateTimeOffset AddedDateTime { get; set; } = DateTime.UtcNow;
 
     public long? PurchaseOrderId { get; set; }
 
@@ -41,7 +41,7 @@ public class ShoppingCartItemEntityConfig : IEntityTypeConfiguration<ShoppingCar
             .HasForeignKey(_ => _.ProductId);
 
         builder
-            .Property(_ => _.SellingPrice)
+            .Property(_ => _.FinalSellingPrice)
             .HasColumnType("money");
 
         builder
