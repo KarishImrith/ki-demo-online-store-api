@@ -1,5 +1,4 @@
 ﻿using AutoFixture;
-using AutoMapper;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Database;
@@ -9,8 +8,8 @@ using OnlineStore.Logic.Concerns.ProductConcern.GetAll;
 using OnlineStore.Logic.Concerns.ProductConcern.GetById;
 using OnlineStore.Logic.Concerns.ProductConcern.Post;
 using OnlineStore.Logic.Concerns.ProductConcern.Put;
-using OnlineStore.Logic.UnitTests.SpecimenBuilders;
-using System.Runtime.CompilerServices;
+using OnlineStore.Logic.UnitTests.Abstractions;
+using OnlineStore.Logic.UnitTests.Helpers;
 
 using GetAll = OnlineStore.Logic.Concerns.ProductConcern.GetAll;
 using GetById = OnlineStore.Logic.Concerns.ProductConcern.GetById;
@@ -19,25 +18,16 @@ using Put = OnlineStore.Logic.Concerns.ProductConcern.Put;
 
 namespace OnlineStore.Logic.UnitTests.Concerns;
 
-public class ProductConcernTests
+public class ProductConcernTests : BaseTests<ProductConcernTests, ProductProfile>
 {
-    private readonly Fixture _fixture;
-    private readonly IList<Product> _initialProducts;
-
-    public ProductConcernTests()
-    {
-        _fixture = new Fixture();
-        _fixture.Customizations.Add(new UniqueIdSpecimenBuilder());
-        _initialProducts = GenerateMockProducts(5);
-    }
+    private IList<Product> _initialProducts;
 
     [Fact]
     public async Task GetAllHandler_ReturnsCorrectResults()
     {
         // Arrange
         var mockDbContext = await GenerateMockDataDbContextAsync();
-        var mockMapper = GenerateMockMapper();
-        var handler = new GetAll.Handler(mockDbContext, mockMapper);
+        var handler = new GetAll.Handler(mockDbContext, _mockMapper);
 
         var command = new ProductGetAllCommand();
 
@@ -54,8 +44,7 @@ public class ProductConcernTests
     {
         // Arrange
         var mockDbContext = await GenerateMockDataDbContextAsync();
-        var mockMapper = GenerateMockMapper();
-        var handler = new GetById.Handler(mockDbContext, mockMapper);
+        var handler = new GetById.Handler(mockDbContext, _mockMapper);
 
         var entityToGet = _initialProducts[Random.Shared.Next(0, _initialProducts.Count - 1)];
         var command = new ProductGetByIdCommand(entityToGet.Id);
@@ -72,10 +61,8 @@ public class ProductConcernTests
     {
         // Arrange
         var mockDbContext = await GenerateMockDataDbContextAsync();
-        var mockMapper = GenerateMockMapper();
-        var handler = new Post.Handler(mockDbContext, mockMapper);
+        var handler = new Post.Handler(mockDbContext, _mockMapper);
 
-        var beforeRecordCount = await mockDbContext.Set<Product>().CountAsync();
         var dtoToCreate = _fixture.Create<ProductPostDto>();
         var command = new ProductPostCommand(dtoToCreate);
 
@@ -84,7 +71,7 @@ public class ProductConcernTests
 
         // Assert
         var afterRecordCount = await mockDbContext.Set<Product>().CountAsync();
-        afterRecordCount.Should().Be(beforeRecordCount + 1);
+        afterRecordCount.Should().Be(_initialProducts.Count + 1);
         var createdEntity = await mockDbContext.Set<Product>().FindAsync(createdId);
         createdEntity.Should().BeEquivalentTo(dtoToCreate, opt => opt.ExcludingMissingMembers());
     }
@@ -94,10 +81,7 @@ public class ProductConcernTests
     {
         // Arrange
         var mockDbContext = await GenerateMockDataDbContextAsync();
-        var mockMapper = GenerateMockMapper();
-        var handler = new Put.Handler(mockDbContext, mockMapper);
-
-        var beforeRecordCount = await mockDbContext.Set<Product>().CountAsync();
+        var handler = new Put.Handler(mockDbContext, _mockMapper);
 
         var entityToUpdate = _initialProducts[Random.Shared.Next(0, _initialProducts.Count - 1)];
         var dtoToUpdate = _fixture.Create<ProductPutDto>();
@@ -108,40 +92,17 @@ public class ProductConcernTests
 
         // Assert
         var afterRecordCount = await mockDbContext.Set<Product>().CountAsync();
-        afterRecordCount.Should().Be(beforeRecordCount);
+        afterRecordCount.Should().Be(_initialProducts.Count);
         var updatedEntity = await mockDbContext.Set<Product>().FindAsync(entityToUpdate.Id);
         updatedEntity.Should().BeEquivalentTo(dtoToUpdate, opt => opt.ExcludingMissingMembers());
     }
 
-    // TODO: Move this so that it is reusable
-    private async Task<DataDbContext> GenerateMockDataDbContextAsync([CallerMemberName] string callerMemberName = "")
+    protected override async Task<DataDbContext> InitializeDatabaseAsync(DataDbContext dataDbContext)
     {
-        var options = new DbContextOptionsBuilder<DataDbContext>()
-            .UseInMemoryDatabase(callerMemberName)
-            .Options;
-
-        var dataDbContext = new DataDbContext(options);
-        dataDbContext.Set<Product>().AddRange(_initialProducts);
+        _initialProducts = _fixture.GenerateProductEntities(5);
+        await dataDbContext.Set<Product>().AddRangeAsync(_initialProducts);
         await dataDbContext.SaveChangesAsync();
 
         return dataDbContext;
-    }
-
-    // TODO: Move this so that it is reusable
-    private static IMapper GenerateMockMapper()
-    {
-        var mapperConfiguration = new MapperConfiguration(configurationExpression => configurationExpression.AddProfile<ProductProfile>());
-
-        return mapperConfiguration.CreateMapper();
-    }
-
-    // TODO: Move this so that it is reusable
-    private List<Product> GenerateMockProducts(int productCount)
-    {
-        return _fixture.Build<Product>()
-            .Without(_ => _.ProductAttachments)
-            .Without(_ => _.ShoppingCartItems)
-            .CreateMany(productCount)
-            .ToList();
     }
 }
